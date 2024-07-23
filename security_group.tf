@@ -1,24 +1,3 @@
-resource "aws_security_group" "database" {
-  name        = "database-sg"
-  description = "Security group for database"
-  vpc_id = module.vpc.vpc_id
-  
-  ingress {
-    from_port   = var.DB_PORT
-    to_port     = var.DB_PORT
-    protocol    = "tcp"
-    cidr_blocks = ["0.0.0.0/0"] # Permitindo acesso de qualquer IP, ajuste conforme necessário
-    description = "Mysql DB"
-  }
-
-  egress {
-    from_port   = 0
-    to_port     = 0
-    protocol    = "-1"
-    cidr_blocks = ["0.0.0.0/0"]
-  }
-}
-
 ### CLUSTER
 resource "aws_security_group" "ssh_cluster" {
   name        = "ssh_cluster"
